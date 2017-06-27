@@ -5,7 +5,6 @@ module Wink
     class LightBulb < Device
       def initialize(client, device)
         super
-
         @device_id  = device.fetch("light_bulb_id")
       end
 
