@@ -116,7 +116,7 @@ module Wink
     # Returns Array of Wink::Devices::thermostat instances.
     def thermostat(device)
       unless device.is_a?(Hash)
-        response = get('/thermostat{/thermostat}', :thermostat => device)
+        response = get('/thermostats{/thermostat}', :thermostat => device)
         device   = response.body["data"]
       end
       Devices::Thermostat.new(self, device)

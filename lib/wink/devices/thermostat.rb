@@ -50,36 +50,25 @@ module Wink
 
       private
 
-      def set_max_set_point(scale)
+      def heating_set_point(scale)
         body = {
           :desired_state => {
             :powered => true,
             :max_set_point => scale
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
-      def set_max_set_point(scale)
-        body = {
-          :desired_state => {
-            :powered => true,
-            :max_set_point => scale
-          }
-        }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
-        response.success?
-      end
-
-      def min_set_point(scale)
+      def cooling_set_point(scale)
         body = {
           :desired_state => {
             :powered => true,
             :min_set_point => scale
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
@@ -90,7 +79,7 @@ module Wink
             :eco_max_set_point => scale
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
@@ -98,21 +87,21 @@ module Wink
         body = {
           :desired_state => {
             :powered => true,
-            :eco_max_set_point => scale
+            :eco_min_set_point => scale
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
-      def mode(scale)
+      def thermostat_mode(scale)
         body = {
           :desired_state => {
             :powered => true,
             :mode => scale
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
@@ -122,7 +111,7 @@ module Wink
             :powered => !!state
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
@@ -133,7 +122,7 @@ module Wink
             :users_away => !!state
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
@@ -144,7 +133,7 @@ module Wink
             :fan_timer_active => !!state
           }
         }
-        response = client.put('/thermostat{/thermostat}', :thermostat => device_id, :body => body)
+        response = client.put('/thermostats{/thermostat}', :thermostat => device_id, :body => body)
         response.success?
       end
 
