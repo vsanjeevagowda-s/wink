@@ -69,6 +69,8 @@ module Wink
           binary_switch(device)
         elsif device.key?("thermostat_id")
           thermostat(device)
+        elsif device.key?("lock_id")
+          lock(device)
         end
       end
     end
@@ -120,6 +122,17 @@ module Wink
         device   = response.body["data"]
       end
       Devices::Thermostat.new(self, device)
+    end
+
+    # Public: Lookup all binary switches connected to your Wink Hub.
+    #
+    # Returns Array of Wink::Devices::lock instances.
+    def lock(device)
+      unless device.is_a?(Hash)
+        response = get('/locks{/lock}', :lock => device)
+        device   = response.body["data"]
+      end
+      Devices::Lock.new(self, device)
     end
 
     # Public: Lookup all binary switches connected to your Wink Hub.
