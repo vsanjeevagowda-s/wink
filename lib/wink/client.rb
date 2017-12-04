@@ -71,6 +71,8 @@ module Wink
           thermostat(device)
         elsif device.key?("lock_id")
           lock(device)
+        elsif device.key?("sensor_pod_id")
+          sensor(device)
         end
       end
     end
@@ -157,6 +159,14 @@ module Wink
       end
 
       Devices::GarageDoor.new(self, device)
+    end
+
+    def sensor(device)
+      unless device.is_a?(Hash)
+        response = get('/sensor_pods{/sensor_pod}', :sensor_pod => device)
+        device   = response.body["data"]
+      end
+      Devices::Sensor.new(self, device)
     end
 
     # Public: Lookup all connected garage doors to your Wink Hub.
