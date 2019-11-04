@@ -19,7 +19,7 @@ module Wink
     end
 
     def endpoint
-      @endpoint || 'https://winkapi.quirky.com'
+      @endpoint || 'https://api.wink.com'
     end
 
     def client_id
